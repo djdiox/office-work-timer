@@ -1,5 +1,8 @@
 {
   "name": "OfficeWorkTimer",
-  "app_id": "",
-  "type": "ionic-angular"
+  "app_id": "c73d41d8",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

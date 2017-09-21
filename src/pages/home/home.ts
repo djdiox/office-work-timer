@@ -1,36 +1,36 @@
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import * as firebase from 'firebase';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
   // pages: Array<{ title: string}>;
-  items = [
-    'Pokémon Yellow',
-    'Super Metroid',
-    'Mega Man X',
-    'The Legend of Zelda',
-    'Pac-Man',
-    'Super Mario World',
-    'Street Fighter II',
-    'Half Life',
-    'Final Fantasy VII',
-    'Star Fox',
-    'Tetris',
-    'Donkey Kong III',
-    'GoldenEye 007',
-    'Doom',
-    'Fallout',
-    'GTA',
-    'Halo'
-  ];
-  constructor(public navCtrl: NavController) {
+  tasks: FirebaseListObservable<any[]>;
+  constructor(public navCtrl: NavController, public angulafire: AngularFireDatabase,
+    private afAuth: AngularFireAuth, private auth: AuthProvider) {
+    // this.tasks =  angulafire.list('/tasks');
+    // Get a reference to the database service
+    this.auth.currentUser = afAuth.authState;
   }
 
-  itemSelected(val:string){
+  taskSelected(val: string) {
     console.log(val);
+  }
+  login() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data) => {
+      this.tasks = this.angulafire.list('/tasks');
+      // this.tasks.push({title:'test'})
+      console.log(data);
+    }, err => console.log(err));
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
   }
 
 }

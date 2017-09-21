@@ -14,9 +14,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { WorktimeProvider } from '../providers/worktime/worktime';
 // Initialize Firebase
 const config = {
   apiKey: "AIzaSyDPoC9tZoTTVo-SdBnGr9W6vDZ_KfNCBp0",
@@ -41,7 +43,8 @@ const config = {
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule ,
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,7 +59,8 @@ const config = {
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthProvider
+    AuthProvider,
+    WorktimeProvider
   ]
 })
 export class AppModule { }

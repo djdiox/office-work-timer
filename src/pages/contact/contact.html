@@ -8,10 +8,27 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <ion-label color="primary">Beschreibung:</ion-label>
+      <ion-input placeholder="Text Input"></ion-input>
+    </ion-item>
+<!-- 
+    <ion-item>
+      <ion-label color="primary" fixed>Fixed Label</ion-label>
+      <ion-input type="tel" placeholder="Tel Input"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="number" placeholder="Number Input with no label"></ion-input>
+    </ion-item> -->
+    <ion-item>
+      <ion-label>Start</ion-label>
+      <ion-datetime displayFormat="DD.MM.YYYY HH:mm" [(ngModel)]="currentWorkTime.start"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End</ion-label>
+      <ion-datetime displayFormat="DD.MM.YYYY HH:mm" [(ngModel)]="currentWorkTime.end"></ion-datetime>
     </ion-item>
   </ion-list>
+
 </ion-content>
